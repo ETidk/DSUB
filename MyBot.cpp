@@ -80,18 +80,29 @@ int main()
 				}
 				
 			}
+			int pep_counter = 0;
             while (str_stream >> word && !cont) {
 
-
                 if (word == "pepperoni") {
-                    bot.message_create(dpp::message(event.msg.channel_id, "Ban that guy"));
-                    cont = true;
+					pep_counter++;
+                    //bot.message_create(dpp::message(event.msg.channel_id, "Ban that guy"));
+                    //cont = true;
                 }
-		if (word == "et") {
+				
+				if (word == "et") {
                     bot.message_create(dpp::message(event.msg.channel_id, "Testing"));
                     cont = true;
                 }
             }
+			
+			if (pep_counter > 0){
+				std::string ban_pep_text = "";
+				for (int i = 0; i < pep_counter-1; i++){
+					ban_pep_text = ban_pep_text + "Ban that guy\n";
+				}
+				ban_pep_text = ban_pep_text + "Ban that guy";
+				bot.message_create(dpp::message(event.msg.channel_id, ban_pep_text));
+			}
         }
         });
 
